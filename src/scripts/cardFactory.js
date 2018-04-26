@@ -6,5 +6,4 @@ const cardFactory = (classList, textContent) => {
     return theSection
 }
 
-
 module.exports = cardFactory

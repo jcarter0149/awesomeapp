@@ -10,9 +10,6 @@ const CardFactory = require("./cardFactory")
 const ButtonFactory = require("./buttonFactory")
 const InputFieldFactory = require ("./inputFactory")
 
-
-
-
 // Final output DOM component reference
 const output = document.querySelector(".output")
 
@@ -29,13 +26,10 @@ const createCardButton = ButtonFactory("button--submit", "Create Card", function
     cardTextInput.value = ""
 })
 
-
 const cardTextInput = InputFieldFactory("input--text", "Enter card text here", "text")
-
 
 fragment.appendChild(cardTextInput)
 fragment.appendChild(createCardButton)
-
 
 DomBuilder(fragment, ".output")
 // output.appendChild(fragment)
