@@ -1,47 +1,63 @@
-//final output DOM component reference
+/* Modules
+    1. Creating fragments
+    2. Creating components with factories
+    3. Adding event listeners to components
+    4. Adding components to DOM
+    5. Clearing fields
+*/
+const DomBuilder = require("./DOMbuilder")
+
+
+
+
+
+
+
+// Final output DOM component reference
 const output = document.querySelector(".output")
 
-//frag to hold all the stuff so we inject into the DOM once
+// Fragment to hold all the stuff so we inject into the DOM once
 const fragment = document.createDocumentFragment()
 
-//create factory function for components
-const inputFieldFactory = (classList, defaultPlaceHolderText, type) => {
-   const inputField = document.createElement("input")
-   inputField.setAttribute("type", type)
-   inputField.classList = classList
-   inputField.placeholder = defaultPlaceHolderText
-   return inputField
+// Create factory function to generate components
+// Create input component
+const inputFieldFactory = (classList, defaultPlaceholderText, type) => {
+    const inputField = document.createElement("input")
+    inputField.setAttribute("type", type)
+    inputField.classList = classList
+    inputField.placeholder = defaultPlaceholderText
+    return inputField
 }
 
-//create input component
 
-//create button component
-const buttonfactory = (classList, textContent) => {
-   const theButton = document.createElement("button")
-   theButton.classList = classList
-   theButton.textContent = textContent
-   return theButton
+// Create button component
+const buttonFactory = (classList, textContent) => {
+    const theButton = document.createElement("button")
+    theButton.classList = classList
+    theButton.textContent = textContent
+    return theButton
 }
 
-const cardfactory = (classList, textContent) => {
-   const theSection = document.createElement("section")
-   theSection.classList = classList
-   theSection.textContent = textContent
-   return theSection
+// Create card component
+const cardFactory = (classList, textContent) => {
+    const theSection = document.createElement("section")
+    theSection.classList = classList
+    theSection.textContent = textContent
+    return theSection
 }
 
-const createCardButton = buttonfactory("button--submit", "Create Card")
+const createCardButton = buttonFactory("button--submit", "Create Card")
 const cardTextInput = inputFieldFactory("input--text", "Enter card text here", "text")
 
 /*
-attach event listener to button
+    Attach event listener to button
 */
-
-createCardButton.addEventListener("click", function(){
-    // 1. get value of input field
+createCardButton.addEventListener("click", function () {
+    // 1. Get value of input field
     const userEntry = cardTextInput.value
-    // 2. create card component with text inside
-    output.appendChild(cardfactory("card", userEntry))
+
+    // 2. Create card component with text inside
+    output.appendChild(cardFactory("card", userEntry))
 
     cardTextInput.value = ""
 })
@@ -50,9 +66,5 @@ fragment.appendChild(cardTextInput)
 fragment.appendChild(createCardButton)
 
 
-
-//create card component
-
-
-
-output.appendChild(fragment)
+DomBuilder(fragment, ".output")
+// output.appendChild(fragment)
